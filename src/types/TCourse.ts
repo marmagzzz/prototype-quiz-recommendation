@@ -4,4 +4,5 @@ export type TCourse = {
     code: string;
     subText: string;
     qualification: EQualifications;
+    image: string;
 };

@@ -17,10 +17,7 @@ export default function CourseLists({ courseLists }: TCourseListsProp) {
                     {courseLists.map((courseObj, index) => (
                         <Col key={index}>
                             <Card>
-                                <Card.Img
-                                    variant='top'
-                                    src='https://placeholder.co/250x250/png'
-                                />
+                                <Card.Img variant='top' src={courseObj.image} />
                                 <Card.Body>
                                     <Card.Title>{courseObj.code}</Card.Title>
                                     <Card.Text>{courseObj.subText}</Card.Text>
