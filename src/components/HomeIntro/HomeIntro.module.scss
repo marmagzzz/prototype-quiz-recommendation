@@ -2,9 +2,27 @@
 @import '@/styles/breakpoints.scss';
 
 .sectionContainer {
-    padding: 24px 0;
+    padding: 12px 0;
 }
 
 .homeIntroContainer {
     background: variables.$primaryBgColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.takeQuizBtn {
+    text-decoration: none;
+    color: variables.$foreGroundColor;
+    background: variables.$secondaryBgColor;
+    padding: 24px;
+    border-radius: 50px;
+    margin-top: 12px;
+
+    &:hover {
+        color: white;
+        background: variables.$foreGroundColor;
+    }
 }
