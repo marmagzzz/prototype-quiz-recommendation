@@ -2,10 +2,8 @@ import './globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import CustomNavbar from '@/components/CustomNavbar/CustomNavbar.component';
-
-const inter = Inter({ subsets: ['latin'] });
+import { fontOpenSans } from '@/fonts';
 
 export const metadata: Metadata = {
     title: 'Prototype | Quiz with Course Recommendation',
@@ -18,8 +16,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang='en' className={inter.className}>
-            <body>
+        <html lang='en'>
+            <body className={fontOpenSans.className}>
                 <CustomNavbar />
                 {children}
             </body>
