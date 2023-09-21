@@ -1,0 +1,10 @@
+@use '@/styles/variables' as variables;
+@import '@/styles/breakpoints.scss';
+
+.sectionContainer {
+    padding: 24px 0;
+}
+
+.homeIntroContainer {
+    background: variables.$primaryBgColor;
+}
