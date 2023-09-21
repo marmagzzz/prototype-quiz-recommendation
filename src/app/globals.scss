@@ -9,7 +9,20 @@
 
 html,
 body {
-    max-width: 100vw;
+    // max-width: 100vw;
     overflow-x: hidden;
     background-color: variables.$primaryBgColor !important;
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: variables.$foreGroundColor !important;
+}
+
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.5rem;
 }

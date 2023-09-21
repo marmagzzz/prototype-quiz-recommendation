@@ -1,6 +1,9 @@
 import './globals.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import CustomNavbar from '@/components/CustomNavbar/CustomNavbar.component';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,8 +18,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang='en'>
-            <body className={inter.className}>{children}</body>
+        <html lang='en' className={inter.className}>
+            <body>
+                <CustomNavbar />
+                {children}
+            </body>
         </html>
     );
 }
