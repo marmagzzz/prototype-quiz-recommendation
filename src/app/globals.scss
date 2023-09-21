@@ -13,12 +13,3 @@ body {
     overflow-x: hidden;
     background-color: variables.$primaryBgColor !important;
 }
-
-// Active Link/Anchor
-a.active {
-    color: variables.$accentColor !important;
-}
-
-span.navbar-toggler-icon {
-    background-color: variables.$accentColor;
-}
