@@ -13,7 +13,8 @@ export default function CourseLists({ courseLists }: TCourseListsProp) {
         <section className={`${styles.sectionContainer}`}>
             <Container>
                 <h1>Available Courses</h1>
-                <Row xs={1} lg={5} className='g-4'>
+
+                <Row xs={1} md={3} className={`${styles.rowContainer} g-4`}>
                     {courseLists.map((courseObj, index) => (
                         <Col key={index}>
                             <Card>

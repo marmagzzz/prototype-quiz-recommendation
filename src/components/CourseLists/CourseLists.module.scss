@@ -1,5 +1,13 @@
 .sectionContainer {
+    padding: 24px 0;
+
     h1 {
         text-align: center;
+        margin: 24px;
+        font-size: 2.5rem !important;
     }
+}
+
+.rowContainer {
+    justify-content: center;
 }
