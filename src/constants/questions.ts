@@ -3,26 +3,152 @@ import { TQuestion } from '@/types';
 export const QUESTIONS: TQuestion[] = [
     {
         question: 'Q1',
-        answer: 'A1',
+        choices: [
+            {
+                answer: 'A1',
+                isCorrect: true,
+                isSelected: false,
+            },
+            {
+                answer: 'A2',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A3',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A4',
+                isCorrect: false,
+                isSelected: false,
+            },
+        ],
     },
     {
         question: 'Q2',
-        answer: 'A2',
+        choices: [
+            {
+                answer: 'A1',
+                isCorrect: true,
+                isSelected: false,
+            },
+            {
+                answer: 'A2',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A3',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A4',
+                isCorrect: false,
+                isSelected: false,
+            },
+        ],
     },
     {
         question: 'Q3',
-        answer: 'A3',
+        choices: [
+            {
+                answer: 'A1',
+                isCorrect: true,
+                isSelected: false,
+            },
+            {
+                answer: 'A2',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A3',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A4',
+                isCorrect: false,
+                isSelected: false,
+            },
+        ],
     },
     {
         question: 'Q4',
-        answer: 'A4',
+        choices: [
+            {
+                answer: 'A1',
+                isCorrect: true,
+                isSelected: false,
+            },
+            {
+                answer: 'A2',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A3',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A4',
+                isCorrect: false,
+                isSelected: false,
+            },
+        ],
     },
     {
         question: 'Q5',
-        answer: 'A5',
+        choices: [
+            {
+                answer: 'A1',
+                isCorrect: true,
+                isSelected: false,
+            },
+            {
+                answer: 'A2',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A3',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A4',
+                isCorrect: false,
+                isSelected: false,
+            },
+        ],
     },
     {
         question: 'Q6',
-        answer: 'A6',
+        choices: [
+            {
+                answer: 'A1',
+                isCorrect: true,
+                isSelected: false,
+            },
+            {
+                answer: 'A2',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A3',
+                isCorrect: false,
+                isSelected: false,
+            },
+            {
+                answer: 'A4',
+                isCorrect: false,
+                isSelected: false,
+            },
+        ],
     },
 ];

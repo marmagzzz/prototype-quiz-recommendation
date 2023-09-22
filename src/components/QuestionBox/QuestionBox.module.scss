@@ -1,0 +1,34 @@
+@use '@/styles/variables' as variables;
+@import '@/styles/breakpoints.scss';
+
+.questionBoxMainContainer {
+    padding: 48px 64px;
+}
+
+.answerChoicesBtnContainer {
+    margin: 6px auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    .answerChoicesBtn {
+        background-color: variables.$foreGroundColor;
+        color: white;
+        padding: 12px 40%;
+    }
+    .selectedAnswerBtn {
+        background-color: variables.$secondaryBgColor;
+    }
+}
+
+.questionNavBtnContainer {
+    margin: 24px 0;
+}
+
+.questionNavBtnColContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .questionNavBtn {
+    }
+}
