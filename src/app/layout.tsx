@@ -2,8 +2,8 @@ import './globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import type { Metadata } from 'next';
 
-import { fontOpenSans } from '@/fonts';
 import CustomNavbar from '@/components/CustomNavbar/CustomNavbar.component';
+import { fontOpenSans } from '@/fonts';
 
 export const metadata: Metadata = {
     title: 'Prototype | Quiz with Course Recommendation',
