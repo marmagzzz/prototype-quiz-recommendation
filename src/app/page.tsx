@@ -7,7 +7,7 @@ import { COURSES } from '@/constants';
 
 export default function Home() {
     return (
-        <main className={styles.main}>
+        <main>
             <HomeIntro />
             <CourseLists courseLists={COURSES} />
         </main>
