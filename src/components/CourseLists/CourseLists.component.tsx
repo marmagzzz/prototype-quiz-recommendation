@@ -1,8 +1,9 @@
 'use client';
 
-import styles from './CourseLists.module.scss';
 import { Card, Col, Container, Row } from 'react-bootstrap';
+
 import { TCourse } from '@/types';
+import styles from './CourseLists.module.scss';
 
 type TCourseListsProp = {
     courseLists: TCourse[];
