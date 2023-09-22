@@ -1,10 +1,10 @@
 'use client';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './QuestionBox.module.scss';
 import { TAnswer, TQuestion } from '@/types';
-import { v4 as uuidv4 } from 'uuid';
 
 type QuestionBoxProps = {
     currentQuestion: TQuestion;

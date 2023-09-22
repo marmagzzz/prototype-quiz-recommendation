@@ -1,10 +1,10 @@
 'use client';
 
 import { Card, Col, Container, Row } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
 
 import { TCourse } from '@/types';
 import styles from './CourseLists.module.scss';
-import { v4 as uuidv4 } from 'uuid';
 
 type TCourseListsProp = {
     courseLists: TCourse[];

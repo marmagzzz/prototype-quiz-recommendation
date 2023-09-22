@@ -10,12 +10,16 @@ type TGetQuestionsListReturn = {
     error?: Error | string | null;
 };
 
-export async function useGetQuestionLists(): Promise<TGetQuestionsListReturn> {
+export function useGetQuestionLists(): TGetQuestionsListReturn {
     // Possible actual fetching of data
     // const { data, isLoading, error } = useSWR<TQuestion[]>(`${API_URL}/${ENDPOINT}${PARAMS}`, genericFetcher)
     // return { data, isLoading, error }
 
-    await sleep(1_000);
+    // useEffect(() => {
+    //     (async () => {
+    //         await sleep(1_000);
+    //     })();
+    // }, []);
 
     // Mock of success retrieval
     return {

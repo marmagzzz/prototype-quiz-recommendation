@@ -18,27 +18,24 @@ export default function QuizPage() {
         Error | string | null
     >();
 
+    /** Initial component mount */
     useEffect(() => {
         // Mock fetching data from server
-        const fetchData = async () => {
-            const { data, isLoading, error } = await useGetQuestionLists();
-            const { questionLists: responseQuestionLists } = data;
+        const { data, isLoading, error } = useGetQuestionLists();
+        const { questionLists: responseQuestionLists } = data;
 
-            /** Update state */
-            setIsFetchingQuestions(isLoading);
-            setQuestionLists(responseQuestionLists);
-            setErrorFetchQuestions(error);
+        /** Update state */
+        setIsFetchingQuestions(isLoading);
+        setQuestionLists(responseQuestionLists);
+        setErrorFetchQuestions(error);
 
-            /**
-             * Set the initial selected question, if question lists is not empty
-             */
-            if (responseQuestionLists.length > 0) {
-                setCurrentQuestion(responseQuestionLists[0]);
-                setCurrentQuestionIndex(0);
-            }
-        };
-
-        fetchData();
+        /**
+         * Set the initial selected question, if question lists is not empty
+         */
+        if (responseQuestionLists.length > 0) {
+            setCurrentQuestion(responseQuestionLists[0]);
+            setCurrentQuestionIndex(0);
+        }
 
         return () => {
             /**
