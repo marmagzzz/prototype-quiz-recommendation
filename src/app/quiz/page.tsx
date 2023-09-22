@@ -18,12 +18,12 @@ export default function QuizPage() {
         Error | string | null
     >();
 
+    // Mock fetching data from server
+    const { data, isLoading, error } = useGetQuestionLists();
+    const { questionLists: responseQuestionLists } = data;
+
     /** Initial component mount */
     useEffect(() => {
-        // Mock fetching data from server
-        const { data, isLoading, error } = useGetQuestionLists();
-        const { questionLists: responseQuestionLists } = data;
-
         /** Update state */
         setIsFetchingQuestions(isLoading);
         setQuestionLists(responseQuestionLists);
