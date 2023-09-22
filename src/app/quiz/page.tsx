@@ -20,7 +20,7 @@ export default function QuizPage() {
 
     useEffect(() => {
         // Mock fetching data from server
-        const useFetchData = async () => {
+        const fetchData = async () => {
             const { data, isLoading, error } = await useGetQuestionLists();
             const { questionLists: responseQuestionLists } = data;
 
@@ -38,7 +38,7 @@ export default function QuizPage() {
             }
         };
 
-        useFetchData();
+        fetchData();
 
         return () => {
             /**
