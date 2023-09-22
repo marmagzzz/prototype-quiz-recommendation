@@ -1,4 +1,6 @@
+import { TAnswer } from './TAnswer';
+
 export type TQuestion = {
     question: string;
-    answer: string;
+    choices: TAnswer[];
 };
