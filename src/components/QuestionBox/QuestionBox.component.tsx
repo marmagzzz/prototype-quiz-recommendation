@@ -4,7 +4,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import styles from './QuestionBox.module.scss';
 import { TAnswer, TQuestion } from '@/types';
-import { randomUUID } from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 
 type QuestionBoxProps = {
     currentQuestion: TQuestion;
@@ -70,7 +70,7 @@ export default function QuestionBox({
                             return (
                                 <Col
                                     className={`${styles.answerChoicesBtnContainer}`}
-                                    key={`${index}-${randomUUID()}`}
+                                    key={`${index}-${uuidv4()}`}
                                 >
                                     <button
                                         className={`${

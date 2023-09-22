@@ -4,7 +4,7 @@ import { Card, Col, Container, Row } from 'react-bootstrap';
 
 import { TCourse } from '@/types';
 import styles from './CourseLists.module.scss';
-import { randomUUID } from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 
 type TCourseListsProp = {
     courseLists: TCourse[];
@@ -18,7 +18,7 @@ export default function CourseLists({ courseLists }: TCourseListsProp) {
 
                 <Row xs={1} md={3} className={`${styles.rowContainer} g-4`}>
                     {courseLists.map((courseObj, index) => (
-                        <Col key={`${index}-${randomUUID()}`}>
+                        <Col key={`${index}-${uuidv4()}`}>
                             <Card>
                                 <Card.Img variant='top' src={courseObj.image} />
                                 <Card.Body>
