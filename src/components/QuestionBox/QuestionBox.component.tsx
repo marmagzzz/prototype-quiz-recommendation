@@ -3,9 +3,12 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { FiInfo } from 'react-icons/fi';
+import { AiOutlineFileDone } from 'react-icons/ai';
+import { IoIosArrowBack, IoIosArrowForward, IoIosSend } from 'react-icons/io';
 
 import styles from './QuestionBox.module.scss';
 import { TAnswer, TQuestion } from '@/types';
+import QuestionNavBtn from '../QuestionNavBtn/QuestionNavBtn.component';
 
 type QuestionBoxProps = {
     currentQuestion: TQuestion;
@@ -15,6 +18,7 @@ type QuestionBoxProps = {
     onClickOnAnswer: (answerObj: TAnswer, indexOfAnswer: number) => void;
     onClickOnNextQuestion: () => void;
     onClickOnPreviousQuestion: () => void;
+    onClickOnSubmitBtn: () => void;
 };
 
 export default function QuestionBox({
@@ -26,6 +30,7 @@ export default function QuestionBox({
     onClickOnAnswer,
     onClickOnNextQuestion,
     onClickOnPreviousQuestion,
+    onClickOnSubmitBtn,
 }: QuestionBoxProps) {
     const isDisabledPreviousQuestionBtn =
         currentQuestionIndex == undefined || currentQuestionIndex <= 0;
@@ -46,12 +51,28 @@ export default function QuestionBox({
     ) => {
         if (showSubmitButton == false) {
             return (
-                <button
-                    onClick={() => onClickOnNextQuestion()}
+                <QuestionNavBtn
+                    onClick={onClickOnNextQuestion}
                     disabled={!canProceedToNextQuestion}
                 >
-                    Next
-                </button>
+                    <IoIosArrowForward />
+                </QuestionNavBtn>
+            );
+        }
+    };
+
+    const renderSubmitButton = (
+        displaySubmitQuizBtn: boolean,
+        withSelectedAnswer: boolean
+    ) => {
+        if (displaySubmitQuizBtn) {
+            return (
+                <QuestionNavBtn
+                    onClick={onClickOnSubmitBtn}
+                    disabled={!withSelectedAnswer && !displaySubmitQuizBtn}
+                >
+                    <AiOutlineFileDone />
+                </QuestionNavBtn>
             );
         }
     };
@@ -107,31 +128,27 @@ export default function QuestionBox({
 
                 {/* Question nav button container */}
 
-                <Container className={`${styles.questionNavBtnContainer}`}>
+                <Container className={`${styles.questionNavBtnRowContainer}`}>
                     <Row xs={2}>
+                        {/* Previous Button Col Container */}
                         <Col className={`${styles.questionNavBtnColContainer}`}>
-                            <button
+                            <QuestionNavBtn
+                                onClick={onClickOnPreviousQuestion}
                                 disabled={isDisabledPreviousQuestionBtn}
-                                onClick={() => onClickOnPreviousQuestion()}
                             >
-                                Back
-                            </button>
+                                <IoIosArrowBack />
+                            </QuestionNavBtn>
                         </Col>
+
+                        {/* Next and Submit Button Col Container */}
                         <Col className={`${styles.questionNavBtnColContainer}`}>
                             {renderNextButton(
                                 displaySubmitQuizBtn,
                                 withSelectedAnswer
                             )}
-                            {displaySubmitQuizBtn == true && (
-                                <button
-                                    onClick={() => onClickOnNextQuestion()}
-                                    disabled={
-                                        !withSelectedAnswer &&
-                                        !displaySubmitQuizBtn
-                                    }
-                                >
-                                    Submit
-                                </button>
+                            {renderSubmitButton(
+                                displaySubmitQuizBtn,
+                                withSelectedAnswer
                             )}
                         </Col>
                     </Row>

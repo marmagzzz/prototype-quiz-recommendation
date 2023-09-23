@@ -1,0 +1,27 @@
+@use '@/styles/variables' as variables;
+@import '@/styles/breakpoints.scss';
+
+.questionNavBtn {
+    background-color: transparent;
+    padding: 8px;
+    border: 2px solid white;
+
+    & svg {
+        color: white;
+        font-size: 32px;
+    }
+
+    &:disabled {
+        svg {
+            color: variables.$lightDisabledColor;
+        }
+        border: 2px solid variables.$lightDisabledColor;
+        background-color: variables.$disabledColor;
+    }
+
+    &:enabled {
+        &:hover {
+            background-color: variables.$hoverAnswerBgColor;
+        }
+    }
+}

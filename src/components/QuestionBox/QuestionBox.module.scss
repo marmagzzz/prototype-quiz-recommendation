@@ -3,6 +3,10 @@
 
 .questionBoxMainContainer {
     padding: 48px 64px;
+
+    @include media('<=Lphone') {
+        padding: 24px 32px;
+    }
 }
 
 .instructionContainer {
@@ -59,7 +63,7 @@
     }
 }
 
-.questionNavBtnContainer {
+.questionNavBtnRowContainer {
     margin: 24px 0;
 }
 

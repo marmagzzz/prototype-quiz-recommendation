@@ -7,6 +7,7 @@ import QuestionBox from '@/components/QuestionBox/QuestionBox.component';
 import { useGetQuestionLists } from '@/http';
 import { TAnswer, TQuestion } from '@/types';
 import { QUIZ_PAGE_DATA } from '@/constants';
+import CustomSpinner from '@/components/CustomSpinner/CustomSpinner.component';
 
 export default function QuizPage() {
     const { MSG_EMPTY_QUESTION_LIST } = QUIZ_PAGE_DATA;
@@ -77,7 +78,9 @@ export default function QuizPage() {
                         choices: updatedChoices,
                     };
 
+                    // Update state of current question
                     setCurrentQuestion(updatedCurrentQuestion);
+
                     return updatedCurrentQuestion;
                 }
                 return questionObj;
@@ -121,11 +124,7 @@ export default function QuizPage() {
 
     /** Loading placeholder */
     if (isFetchingQuestions) {
-        return (
-            <Container data-testid='spinner-component'>
-                <Spinner />
-            </Container>
-        );
+        return <CustomSpinner />;
     }
 
     /** Handler when failed to retrieve questions list*/
