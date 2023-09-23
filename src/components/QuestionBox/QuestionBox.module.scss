@@ -5,7 +5,36 @@
     padding: 48px 64px;
 }
 
-.answerChoicesBtnContainer {
+.instructionContainer {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    color: white;
+
+    .iconInfo {
+        font-size: 2rem;
+    }
+
+    h3 {
+        display: inline-block;
+        margin: 0 12px;
+    }
+}
+
+.questionContainer {
+    padding: 16px;
+    color: white;
+
+    h5 {
+        margin: 0;
+    }
+}
+
+.answerChoicesRowContainer {
+    padding: 12px 8px;
+}
+
+.answerChoicesBtnColContainer {
     margin: 6px auto;
     justify-content: center;
     align-items: center;
@@ -16,9 +45,17 @@
         color: white;
         padding: 12px;
         width: 100%;
+        border-radius: 10px;
+        border: 2px solid white;
+
+        &:hover {
+            background-color: variables.$hoverAnswerBgColor;
+            color: white;
+        }
     }
     .selectedAnswerBtn {
         background-color: variables.$secondaryBgColor;
+        color: variables.$foreGroundColor;
     }
 }
 

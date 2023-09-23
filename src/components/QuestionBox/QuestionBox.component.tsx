@@ -2,6 +2,7 @@
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
+import { FiInfo } from 'react-icons/fi';
 
 import styles from './QuestionBox.module.scss';
 import { TAnswer, TQuestion } from '@/types';
@@ -59,11 +60,13 @@ export default function QuestionBox({
         <section data-testid='question-box'>
             <Container className={`${styles.questionBoxMainContainer}`}>
                 {/* Instruction Container */}
-                <div>
+                <div className={`${styles.instructionContainer}`}>
+                    <FiInfo className={`${styles.iconInfo}`} />{' '}
                     <h3>{currentQuestion.instruction}</h3>
                 </div>
+
                 {/* Question Container */}
-                <div>
+                <div className={`${styles.questionContainer}`}>
                     <em>
                         <h5>{currentQuestion.question}</h5>
                     </em>
@@ -71,11 +74,15 @@ export default function QuestionBox({
 
                 {/* Choices of answer Container */}
                 <Container>
-                    <Row xs={1} md={2}>
+                    <Row
+                        xs={1}
+                        md={2}
+                        className={`${styles.answerChoicesRowContainer}`}
+                    >
                         {currentQuestion.choices.map((answerObj, index) => {
                             return (
                                 <Col
-                                    className={`${styles.answerChoicesBtnContainer}`}
+                                    className={`${styles.answerChoicesBtnColContainer}`}
                                     key={`${index}-${uuidv4()}`}
                                 >
                                     <button
