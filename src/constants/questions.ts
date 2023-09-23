@@ -254,11 +254,11 @@ export const QUESTIONS: TQuestion[] = [
                 isCorrect: false,
             },
             {
-                answer: 'Childen',
+                answer: 'Children',
                 isCorrect: true,
             },
             {
-                answer: 'Children',
+                answer: 'Childen',
                 isCorrect: false,
             },
             {
