@@ -8,6 +8,7 @@ import { useGetQuestionLists } from '@/http';
 import { TAnswer, TQuestion } from '@/types';
 import { QUIZ_PAGE_DATA } from '@/constants';
 import CustomSpinner from '@/components/CustomSpinner/CustomSpinner.component';
+import { QUIZ_APP_CONFIG } from '@/config';
 
 export default function QuizPage() {
     const { MSG_EMPTY_QUESTION_LIST } = QUIZ_PAGE_DATA;
@@ -115,10 +116,24 @@ export default function QuizPage() {
 
     function onClickOnSubmitBtn() {
         // TODO: Start computing of score and display the course recommendation
-    }
 
-    // TODO: Do the computation of quiz result and the recommendation part
-    function onClickOnSubmitQuiz() {}
+        // Filter all the correct answers
+        const correctAnswers = questionLists.filter(
+            (questionObj) =>
+                questionObj.choices.find(
+                    (answerObj) => answerObj.isCorrect && answerObj.isSelected
+                ) != undefined
+        );
+
+        let totalScorePercentage =
+            (correctAnswers.length / QUIZ_APP_CONFIG.questionLimit) * 100;
+        // Round the number base by 100
+        totalScorePercentage = Math.round((totalScorePercentage * 100) / 100);
+
+        console.log(totalScorePercentage);
+
+        alert(`Overall score: ${totalScorePercentage}/100`);
+    }
 
     /**
      *
