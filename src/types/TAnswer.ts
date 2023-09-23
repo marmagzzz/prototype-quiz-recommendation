@@ -1,5 +1,5 @@
 export type TAnswer = {
     answer: string;
-    isSelected: boolean;
+    isSelected?: boolean;
     isCorrect: boolean;
 };

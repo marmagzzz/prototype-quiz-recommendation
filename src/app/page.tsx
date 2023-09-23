@@ -5,7 +5,7 @@ import HomeIntro from '@/components/HomeIntro/HomeIntro.component';
 import CourseLists from '@/components/CourseLists/CourseLists.component';
 import { COURSES } from '@/constants';
 
-export default function Home() {
+export default function HomePage() {
     return (
         <main>
             <HomeIntro />

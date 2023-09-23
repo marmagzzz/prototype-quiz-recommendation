@@ -1,6 +1,7 @@
 import { QUESTIONS } from '@/constants';
 import { TQuestion } from '@/types';
 import { genericFetcher, sleep } from '@/utils';
+import _ from 'lodash';
 
 type TGetQuestionsListReturn = {
     data: {
@@ -10,7 +11,9 @@ type TGetQuestionsListReturn = {
     error?: Error | string | null;
 };
 
-export function useGetQuestionLists(): TGetQuestionsListReturn {
+export function useGetQuestionLists(
+    limit: number = 5
+): TGetQuestionsListReturn {
     // Possible actual fetching of data
     // const { data, isLoading, error } = useSWR<TQuestion[]>(`${API_URL}/${ENDPOINT}${PARAMS}`, genericFetcher)
     // return { data, isLoading, error }
@@ -24,7 +27,7 @@ export function useGetQuestionLists(): TGetQuestionsListReturn {
     // Mock of success retrieval
     return {
         data: {
-            questionLists: QUESTIONS,
+            questionLists: _.sampleSize(QUESTIONS, limit),
         },
         isLoading: false,
     };

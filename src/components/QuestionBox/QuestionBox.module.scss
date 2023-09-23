@@ -14,7 +14,8 @@
     .answerChoicesBtn {
         background-color: variables.$foreGroundColor;
         color: white;
-        padding: 12px 40%;
+        padding: 12px;
+        width: 100%;
     }
     .selectedAnswerBtn {
         background-color: variables.$secondaryBgColor;
@@ -29,6 +30,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     .questionNavBtn {
+        width: 100%;
     }
 }

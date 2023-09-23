@@ -1,0 +1,16 @@
+@use '@/styles/variables' as variables;
+@import '@/styles/breakpoints.scss';
+
+.startQuizBtn {
+    text-decoration: none;
+    color: variables.$foreGroundColor;
+    background: variables.$secondaryBgColor;
+    padding: 24px;
+    border-radius: 50px;
+    margin-top: 12px;
+
+    &:hover {
+        color: white;
+        background: variables.$foreGroundColor;
+    }
+}

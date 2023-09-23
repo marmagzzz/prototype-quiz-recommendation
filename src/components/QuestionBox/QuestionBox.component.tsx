@@ -56,11 +56,17 @@ export default function QuestionBox({
     };
 
     return (
-        <section>
+        <section data-testid='question-box'>
             <Container className={`${styles.questionBoxMainContainer}`}>
+                {/* Instruction Container */}
+                <div>
+                    <h3>{currentQuestion.instruction}</h3>
+                </div>
                 {/* Question Container */}
                 <div>
-                    <p>{currentQuestion.question}</p>
+                    <em>
+                        <h5>{currentQuestion.question}</h5>
+                    </em>
                 </div>
 
                 {/* Choices of answer Container */}

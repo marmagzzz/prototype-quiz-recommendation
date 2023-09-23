@@ -19,10 +19,18 @@ export default function QuizPage() {
     >();
 
     // Mock fetching data from server
-    const { data, isLoading, error } = useGetQuestionLists();
-    const { questionLists: responseQuestionLists } = data;
+    const {
+        data: questionListsResponse,
+        isLoading,
+        error,
+    } = useGetQuestionLists();
+    const { questionLists: responseQuestionLists } = questionListsResponse;
 
-    /** Initial component mount */
+    /**
+     *
+     * INITIAL COMPONENT MOUNTING
+     *
+     * */
     useEffect(() => {
         /** Update state */
         setIsFetchingQuestions(isLoading);
@@ -45,7 +53,11 @@ export default function QuizPage() {
         };
     }, []);
 
-    /** HANDLER FUNCTIONS */
+    /**
+     *
+     * HANDLER FUNCTIONS
+     *
+     * */
     function onClickOnAnswer(answerObj: TAnswer, indexOfAnswer: number) {
         const updatedQuestionList = questionLists.map<TQuestion>(
             (questionObj, index) => {
@@ -98,12 +110,19 @@ export default function QuizPage() {
         }
     }
 
-    /** RENDERING  */
+    // TODO: Do the computation of quiz result and the recommendation part
+    function onClickOnSubmitQuiz() {}
+
+    /**
+     *
+     * RENDERING
+     *
+     * */
 
     /** Loading placeholder */
     if (isFetchingQuestions) {
         return (
-            <Container>
+            <Container data-testid='spinner-component'>
                 <Spinner />
             </Container>
         );

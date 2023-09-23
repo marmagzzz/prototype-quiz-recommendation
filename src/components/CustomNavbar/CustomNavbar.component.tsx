@@ -6,7 +6,12 @@ import Navbar from 'react-bootstrap/Navbar';
 
 export default function CustomNavbar() {
     return (
-        <Navbar expand='lg' className='bg-body-tertiary' fixed='top'>
+        <Navbar
+            data-testid='custom-nav-bar'
+            expand='lg'
+            className='bg-body-tertiary'
+            fixed='top'
+        >
             <Container>
                 <Navbar.Brand href='/'>Quiz</Navbar.Brand>
 

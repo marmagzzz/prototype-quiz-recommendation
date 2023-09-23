@@ -1,154 +1,144 @@
 import { TQuestion } from '@/types';
+import _ from 'lodash';
 
 export const QUESTIONS: TQuestion[] = [
     {
-        question: 'Q1',
+        instruction: 'Identify the noun in the following sentence:',
+        question: 'I live in Amsterdam.',
         choices: [
             {
-                answer: 'A1',
+                answer: 'I',
+                isCorrect: false,
+            },
+            {
+                answer: 'Live',
+                isCorrect: false,
+            },
+            {
+                answer: 'In',
+                isCorrect: false,
+            },
+            {
+                answer: 'Amsterdam',
                 isCorrect: true,
-                isSelected: false,
-            },
-            {
-                answer: 'A2',
-                isCorrect: false,
-                isSelected: false,
-            },
-            {
-                answer: 'A3',
-                isCorrect: false,
-                isSelected: false,
-            },
-            {
-                answer: 'A4',
-                isCorrect: false,
-                isSelected: false,
             },
         ],
     },
     {
-        question: 'Q2',
+        instruction: 'Identify the verb in the following sentence:',
+        question: 'The monkey sat by the door.',
         choices: [
             {
-                answer: 'A1',
+                answer: 'Monkey',
+                isCorrect: false,
+            },
+            {
+                answer: 'By',
+                isCorrect: false,
+            },
+            {
+                answer: 'Sat',
                 isCorrect: true,
-                isSelected: false,
             },
             {
-                answer: 'A2',
+                answer: 'Door',
                 isCorrect: false,
-                isSelected: false,
-            },
-            {
-                answer: 'A3',
-                isCorrect: false,
-                isSelected: false,
-            },
-            {
-                answer: 'A4',
-                isCorrect: false,
-                isSelected: false,
             },
         ],
     },
     {
-        question: 'Q3',
+        instruction: 'Identify the verb in the following sentence:',
+        question: 'Michelle hurt her elbow while playing.',
         choices: [
             {
-                answer: 'A1',
+                answer: 'Hurt',
+                isCorrect: false,
+            },
+            {
+                answer: 'Hurt, playing',
                 isCorrect: true,
-                isSelected: false,
             },
             {
-                answer: 'A2',
+                answer: 'Elbow',
                 isCorrect: false,
-                isSelected: false,
             },
             {
-                answer: 'A3',
+                answer: 'Michelle',
                 isCorrect: false,
-                isSelected: false,
-            },
-            {
-                answer: 'A4',
-                isCorrect: false,
-                isSelected: false,
             },
         ],
     },
     {
-        question: 'Q4',
+        instruction: 'Identify the pronoun in the following sentence:',
+        question: 'They were having dinner.',
         choices: [
             {
-                answer: 'A1',
+                answer: 'They',
                 isCorrect: true,
-                isSelected: false,
             },
             {
-                answer: 'A2',
+                answer: 'Were',
                 isCorrect: false,
-                isSelected: false,
             },
             {
-                answer: 'A3',
+                answer: 'Dinner',
                 isCorrect: false,
-                isSelected: false,
             },
             {
-                answer: 'A4',
+                answer: 'Having',
                 isCorrect: false,
-                isSelected: false,
             },
         ],
     },
     {
-        question: 'Q5',
+        instruction: 'Identify the Adverb in the following sentence:',
+        question: 'Marcus always arrives early.',
         choices: [
             {
-                answer: 'A1',
+                answer: 'Arrives',
+                isCorrect: false,
+            },
+            {
+                answer: 'Always',
                 isCorrect: true,
-                isSelected: false,
             },
             {
-                answer: 'A2',
+                answer: 'Early',
                 isCorrect: false,
-                isSelected: false,
             },
             {
-                answer: 'A3',
+                answer: 'Marcus',
                 isCorrect: false,
-                isSelected: false,
-            },
-            {
-                answer: 'A4',
-                isCorrect: false,
-                isSelected: false,
             },
         ],
     },
     {
-        question: 'Q6',
+        instruction: 'Identify the Adverb in the following sentence:',
+        question: 'The dog looked at his owner curiously.',
         choices: [
             {
-                answer: 'A1',
+                answer: 'Dog',
+                isCorrect: false,
+            },
+            {
+                answer: 'Looked',
+                isCorrect: false,
+            },
+            {
+                answer: 'At',
+                isCorrect: false,
+            },
+            {
+                answer: 'Curiously',
                 isCorrect: true,
-                isSelected: false,
-            },
-            {
-                answer: 'A2',
-                isCorrect: false,
-                isSelected: false,
-            },
-            {
-                answer: 'A3',
-                isCorrect: false,
-                isSelected: false,
-            },
-            {
-                answer: 'A4',
-                isCorrect: false,
-                isSelected: false,
             },
         ],
     },
-];
+]
+    // Comment this map-code block to disable shuffling of choices of answers
+    .map((questionObj) => {
+        return {
+            ...questionObj,
+            choices: _.shuffle(questionObj.choices),
+        };
+    });

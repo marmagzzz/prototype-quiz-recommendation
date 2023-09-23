@@ -12,7 +12,10 @@ type TCourseListsProp = {
 
 export default function CourseLists({ courseLists }: TCourseListsProp) {
     return (
-        <section className={`${styles.sectionContainer}`}>
+        <section
+            data-testid='course-lists'
+            className={`${styles.sectionContainer}`}
+        >
             <Container>
                 <h1>Available Courses</h1>
 
