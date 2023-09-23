@@ -9,6 +9,7 @@ import { TAnswer, TQuestion } from '@/types';
 import { QUIZ_PAGE_DATA } from '@/constants';
 import CustomSpinner from '@/components/CustomSpinner/CustomSpinner.component';
 import { QUIZ_APP_CONFIG } from '@/config';
+import ResultBox from '@/components/ResultBox/ResultBox.component';
 
 export default function QuizPage() {
     const { MSG_EMPTY_QUESTION_LIST } = QUIZ_PAGE_DATA;
@@ -19,6 +20,8 @@ export default function QuizPage() {
     const [errorFetchQuestions, setErrorFetchQuestions] = useState<
         Error | string | null
     >();
+
+    const [resultScore, setResultScore] = useState<number>();
 
     // Mock fetching data from server
     const {
@@ -130,9 +133,9 @@ export default function QuizPage() {
         // Round the number base by 100
         totalScorePercentage = Math.round((totalScorePercentage * 100) / 100);
 
-        console.log(totalScorePercentage);
-
         alert(`Overall score: ${totalScorePercentage}/100`);
+
+        setResultScore(totalScorePercentage);
     }
 
     /**
@@ -173,15 +176,19 @@ export default function QuizPage() {
 
     return (
         <main>
-            <QuestionBox
-                currentQuestion={currentQuestion}
-                currentQuestionIndex={currentQuestionIndex}
-                totalLengthQuestions={questionLists.length}
-                onClickOnAnswer={onClickOnAnswer}
-                onClickOnNextQuestion={onClickOnNextQuestion}
-                onClickOnPreviousQuestion={onClickOnPreviousQuestion}
-                onClickOnSubmitBtn={onClickOnSubmitBtn}
-            />
+            {resultScore != undefined ? (
+                <ResultBox resultScore={resultScore} />
+            ) : (
+                <QuestionBox
+                    currentQuestion={currentQuestion}
+                    currentQuestionIndex={currentQuestionIndex}
+                    totalLengthQuestions={questionLists.length}
+                    onClickOnAnswer={onClickOnAnswer}
+                    onClickOnNextQuestion={onClickOnNextQuestion}
+                    onClickOnPreviousQuestion={onClickOnPreviousQuestion}
+                    onClickOnSubmitBtn={onClickOnSubmitBtn}
+                />
+            )}
         </main>
     );
 }

@@ -8,16 +8,24 @@ import styles from './CourseLists.module.scss';
 
 type TCourseListsProp = {
     courseLists: TCourse[];
+    recommendation?: boolean;
 };
 
-export default function CourseLists({ courseLists }: TCourseListsProp) {
+export default function CourseLists({
+    courseLists,
+    recommendation,
+}: TCourseListsProp) {
     return (
         <section
             data-testid='course-lists'
             className={`${styles.sectionContainer}`}
         >
             <Container>
-                <h1>Available Courses</h1>
+                {recommendation ? (
+                    <h1>Recommended course(s) for you</h1>
+                ) : (
+                    <h1>Available Courses</h1>
+                )}
 
                 <Row xs={1} md={3} className={`${styles.rowContainer} g-4`}>
                     {courseLists.map((courseObj, index) => (
