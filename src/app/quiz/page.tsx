@@ -113,6 +113,10 @@ export default function QuizPage() {
         }
     }
 
+    function onClickOnSubmitBtn() {
+        // TODO: Start computing of score and display the course recommendation
+    }
+
     // TODO: Do the computation of quiz result and the recommendation part
     function onClickOnSubmitQuiz() {}
 
@@ -161,6 +165,7 @@ export default function QuizPage() {
                 onClickOnAnswer={onClickOnAnswer}
                 onClickOnNextQuestion={onClickOnNextQuestion}
                 onClickOnPreviousQuestion={onClickOnPreviousQuestion}
+                onClickOnSubmitBtn={onClickOnSubmitBtn}
             />
         </main>
     );
