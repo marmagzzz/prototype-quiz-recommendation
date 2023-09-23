@@ -22,9 +22,11 @@ export default function CourseLists({
         >
             <Container>
                 {recommendation ? (
-                    <h1>Recommended course(s) for you</h1>
+                    <h1 data-testid='course-lists-header'>
+                        Recommended course(s) for you
+                    </h1>
                 ) : (
-                    <h1>Available Courses</h1>
+                    <h1 data-testid='course-lists-header'>Available Courses</h1>
                 )}
 
                 <Row xs={1} md={3} className={`${styles.rowContainer} g-4`}>
