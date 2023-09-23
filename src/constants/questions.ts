@@ -135,4 +135,224 @@ export const QUESTIONS: TQuestion[] = [
             },
         ],
     },
+    {
+        instruction: 'Choose the correct synonym for "happy".',
+        question: 'What is a synonym for "happy"?',
+        choices: [
+            {
+                answer: 'Sad',
+                isCorrect: false,
+            },
+            {
+                answer: 'Joyful',
+                isCorrect: true,
+            },
+            {
+                answer: 'Angry',
+                isCorrect: false,
+            },
+            {
+                answer: 'Tired',
+                isCorrect: false,
+            },
+        ],
+    },
+    {
+        instruction: 'Choose the correct antonym for "strong".',
+        question: 'What is an antonym for "strong"?',
+        choices: [
+            {
+                answer: 'Weak',
+                isCorrect: true,
+            },
+            {
+                answer: 'Healthy',
+                isCorrect: false,
+            },
+            {
+                answer: 'Powerful',
+                isCorrect: false,
+            },
+            {
+                answer: 'Brave',
+                isCorrect: false,
+            },
+        ],
+    },
+    {
+        instruction: 'Select the correct word to complete the sentence.',
+        question: 'She ____ a book when I called her.',
+        choices: [
+            {
+                answer: 'read',
+                isCorrect: true,
+            },
+            {
+                answer: 'reads',
+                isCorrect: false,
+            },
+            {
+                answer: 'reading',
+                isCorrect: false,
+            },
+            {
+                answer: 'has read',
+                isCorrect: false,
+            },
+        ],
+    },
+    {
+        instruction: 'Choose the correctly spelled word.',
+        question: 'Which word is spelled correctly?',
+        choices: [
+            {
+                answer: 'Recieve',
+                isCorrect: false,
+            },
+            {
+                answer: 'Receave',
+                isCorrect: false,
+            },
+            {
+                answer: 'Receive',
+                isCorrect: true,
+            },
+            {
+                answer: 'Recievee',
+                isCorrect: false,
+            },
+        ],
+    },
+    {
+        instruction: 'Identify the part of speech for the word "quickly".',
+        question: 'What is the part of speech for "quickly" in the sentence?',
+        choices: [
+            {
+                answer: 'Adjective',
+                isCorrect: false,
+            },
+            {
+                answer: 'Noun',
+                isCorrect: false,
+            },
+            {
+                answer: 'Adverb',
+                isCorrect: true,
+            },
+            {
+                answer: 'Verb',
+                isCorrect: false,
+            },
+        ],
+    },
+    {
+        instruction: 'Choose the correct plural form of "child".',
+        question: 'What is the plural form of "child"?',
+        choices: [
+            {
+                answer: 'Childs',
+                isCorrect: false,
+            },
+            {
+                answer: 'Childen',
+                isCorrect: true,
+            },
+            {
+                answer: 'Children',
+                isCorrect: false,
+            },
+            {
+                answer: 'Childies',
+                isCorrect: false,
+            },
+        ],
+    },
+    {
+        instruction: 'Select the appropriate preposition.',
+        question: 'I am going ___ the store to buy some groceries.',
+        choices: [
+            {
+                answer: 'in',
+                isCorrect: false,
+            },
+            {
+                answer: 'on',
+                isCorrect: false,
+            },
+            {
+                answer: 'to',
+                isCorrect: true,
+            },
+            {
+                answer: 'at',
+                isCorrect: false,
+            },
+        ],
+    },
+    {
+        instruction: 'Identify the subject in the following sentence.',
+        question: 'The cat chased the mouse.',
+        choices: [
+            {
+                answer: 'The cat',
+                isCorrect: true,
+            },
+            {
+                answer: 'Chased',
+                isCorrect: false,
+            },
+            {
+                answer: 'The mouse',
+                isCorrect: false,
+            },
+            {
+                answer: 'The',
+                isCorrect: false,
+            },
+        ],
+    },
+    {
+        instruction: 'Choose the correct form of the verb.',
+        question: 'She ___ swimming every morning.',
+        choices: [
+            {
+                answer: 'is go',
+                isCorrect: false,
+            },
+            {
+                answer: 'are going',
+                isCorrect: false,
+            },
+            {
+                answer: 'go',
+                isCorrect: false,
+            },
+            {
+                answer: 'goes',
+                isCorrect: true,
+            },
+        ],
+    },
+    {
+        instruction: 'Select the appropriate conjunction.',
+        question: 'I wanted to go to the park ___ it started raining.',
+        choices: [
+            {
+                answer: 'but',
+                isCorrect: true,
+            },
+            {
+                answer: 'and',
+                isCorrect: false,
+            },
+            {
+                answer: 'so',
+                isCorrect: false,
+            },
+            {
+                answer: 'or',
+                isCorrect: false,
+            },
+        ],
+    },
 ];
