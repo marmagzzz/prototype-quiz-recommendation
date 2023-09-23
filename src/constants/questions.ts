@@ -1,5 +1,6 @@
-import { TQuestion } from '@/types';
 import _ from 'lodash';
+
+import { TQuestion } from '@/types';
 
 export const QUESTIONS: TQuestion[] = [
     {
@@ -134,11 +135,4 @@ export const QUESTIONS: TQuestion[] = [
             },
         ],
     },
-]
-    // Comment this map-code block to disable shuffling of choices of answers
-    .map((questionObj) => {
-        return {
-            ...questionObj,
-            choices: _.shuffle(questionObj.choices),
-        };
-    });
+];

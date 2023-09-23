@@ -1,7 +1,9 @@
+import _ from 'lodash';
+
+import { QUIZ_APP_CONFIG } from '@/config';
 import { QUESTIONS } from '@/constants';
 import { TQuestion } from '@/types';
 import { genericFetcher, sleep } from '@/utils';
-import _ from 'lodash';
 
 type TGetQuestionsListReturn = {
     data: {
@@ -12,7 +14,7 @@ type TGetQuestionsListReturn = {
 };
 
 export function useGetQuestionLists(
-    limit: number = 5
+    questionLimit = QUIZ_APP_CONFIG.questionLimit
 ): TGetQuestionsListReturn {
     // Possible actual fetching of data
     // const { data, isLoading, error } = useSWR<TQuestion[]>(`${API_URL}/${ENDPOINT}${PARAMS}`, genericFetcher)
@@ -24,10 +26,25 @@ export function useGetQuestionLists(
     //     })();
     // }, []);
 
+    // Check if questions are needed to be shuffled
+    let resultQuestionList = QUIZ_APP_CONFIG.shuffleQuestions
+        ? _.sampleSize(QUESTIONS, questionLimit)
+        : QUESTIONS.slice(0, questionLimit);
+
+    // Check if answer choices are needed to be shuffled
+    if (QUIZ_APP_CONFIG.shuffleChoices) {
+        resultQuestionList = resultQuestionList.map((questionObj) => {
+            return {
+                ...questionObj,
+                choices: _.shuffle(questionObj.choices),
+            };
+        });
+    }
+
     // Mock of success retrieval
     return {
         data: {
-            questionLists: _.sampleSize(QUESTIONS, limit),
+            questionLists: resultQuestionList,
         },
         isLoading: false,
     };
