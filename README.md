@@ -88,6 +88,16 @@ describe('Rendering ...', () => {
 });
 ```
 
+## For future enhancements
+
+-   Implementation of backend
+    -   To retain session of exam
+    -   To store the results of exam per user
+    -   Store questions, results, users in database.
+    -   Generate analytics based on user data and activity.
+-   Containerization
+-   Add eCommerce feature for purchasing recommended courses
+
 ## FAQ
 
 #### What happens if I refreshed the browser during the quiz?
