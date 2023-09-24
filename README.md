@@ -49,7 +49,7 @@ To run tests, run the following command
 
 ## Deployment
 
-This project is deployed in Vercel. It automatically handles deployment everytime there is an update to pointed repository branch on Vercel.
+This project is deployed in Vercel. It automatically handles deployment everytime there is an update on pointed repository branch on Vercel.
 
 ## Contributing
 
