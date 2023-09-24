@@ -1,49 +1,125 @@
 'use client';
 
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { FiInfo } from 'react-icons/fi';
 import { AiOutlineFileDone } from 'react-icons/ai';
-import { IoIosArrowBack, IoIosArrowForward, IoIosSend } from 'react-icons/io';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-import styles from './QuestionBox.module.scss';
+import styles from './QuizBox.module.scss';
 import { TAnswer, TQuestion } from '@/types';
 import QuestionNavBtn from '../QuestionNavBtn/QuestionNavBtn.component';
+import ErrorView from '../ErrorView/ErrorView.component';
+import { QUIZ_PAGE_DATA } from '@/constants';
 
 type QuestionBoxProps = {
-    currentQuestion: TQuestion;
-    currentQuestionIndex?: number;
-    totalLengthQuestions: number;
+    questionLists: TQuestion[];
     /** Function Handlers */
-    onClickOnAnswer: (answerObj: TAnswer, indexOfAnswer: number) => void;
-    onClickOnNextQuestion: () => void;
-    onClickOnPreviousQuestion: () => void;
-    onClickOnSubmitBtn: () => void;
+    onClickOnSubmitQuizBtn: (answeredQuestionLists: TQuestion[]) => void;
 };
 
-export default function QuestionBox({
-    currentQuestion,
-    currentQuestionIndex,
-    totalLengthQuestions,
-
+export default function QuizBox({
+    questionLists,
     /** Function Handlers */
-    onClickOnAnswer,
-    onClickOnNextQuestion,
-    onClickOnPreviousQuestion,
-    onClickOnSubmitBtn,
+    onClickOnSubmitQuizBtn,
 }: QuestionBoxProps) {
-    const isDisabledPreviousQuestionBtn =
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0); // Default, first question of questionLists
+
+    const [onGoingQuestionLists, setOnGoingQuestionLists] =
+        useState<TQuestion[]>(questionLists);
+
+    const [currentQuestion, setCurrentQuestion] = useState<TQuestion>(
+        questionLists[currentQuestionIndex]
+    ); // By default, the first question
+
+    const totalLengthQuestions = questionLists.length;
+
+    /**
+     *
+     * Conditional variables
+     *
+     * */
+    const disablePrevQuestionBtn =
         currentQuestionIndex == undefined || currentQuestionIndex <= 0;
 
-    const withSelectedAnswer =
+    const hasSelectedAnswer =
         currentQuestion.choices.find(
             (answerObj) => answerObj.isSelected == true
         ) != undefined;
 
     const displaySubmitQuizBtn =
-        withSelectedAnswer &&
+        hasSelectedAnswer &&
         currentQuestionIndex != undefined &&
         totalLengthQuestions == currentQuestionIndex + 1;
+
+    /**
+     *
+     * onClick Handler functions
+     *
+     */
+
+    function onClickOnAnswer(answerObj: TAnswer, indexOfAnswer: number) {
+        const updatedQuestionList = onGoingQuestionLists.map<TQuestion>(
+            (questionObj, index) => {
+                if (index == currentQuestionIndex) {
+                    // Handle setting the selected answer
+                    const updatedChoices = questionObj.choices.map<TAnswer>(
+                        (answerObj, index) => {
+                            return {
+                                ...answerObj,
+                                isSelected: indexOfAnswer == index,
+                            };
+                        }
+                    );
+
+                    const updatedCurrentQuestion = {
+                        ...questionObj,
+                        choices: updatedChoices,
+                    };
+
+                    // Update state of current question
+                    setCurrentQuestion(updatedCurrentQuestion);
+
+                    return updatedCurrentQuestion;
+                }
+                return questionObj;
+            }
+        );
+
+        setOnGoingQuestionLists(updatedQuestionList);
+    }
+
+    function onClickOnPreviousQuestion() {
+        const previousPage =
+            currentQuestionIndex != undefined && currentQuestionIndex > 0
+                ? currentQuestionIndex - 1
+                : 0;
+
+        if (previousPage >= 0) {
+            setCurrentQuestionIndex(previousPage);
+            setCurrentQuestion(onGoingQuestionLists[previousPage]);
+        }
+    }
+
+    function onClickOnNextQuestion() {
+        const nextPage =
+            currentQuestionIndex != undefined &&
+            currentQuestionIndex < onGoingQuestionLists.length
+                ? currentQuestionIndex + 1
+                : 1;
+
+        if (nextPage < onGoingQuestionLists.length) {
+            setCurrentQuestionIndex(nextPage);
+            setCurrentQuestion(onGoingQuestionLists[nextPage]);
+        }
+    }
+
+    /**
+     *
+     * Renderer functions
+     *
+     */
 
     const renderPreviousButton = ({
         disabled,
@@ -98,9 +174,20 @@ export default function QuestionBox({
         }
     };
 
+    /**
+     *
+     * Actual component renderer
+     *
+     */
+
+    /** Handler when questions list is empty or no selected questionObj*/
+    if (questionLists.length <= 0) {
+        return <ErrorView error={QUIZ_PAGE_DATA.MSG_EMPTY_QUESTION_LIST} />;
+    }
+
     return (
         <section data-testid='question-box'>
-            <Container className={`${styles.questionBoxMainContainer}`}>
+            <Container className={`${styles.quizBoxMainContainer}`}>
                 {/* Instruction Container */}
                 <div className={`${styles.instructionContainer}`}>
                     <FiInfo className={`${styles.iconInfo}`} />{' '}
@@ -154,7 +241,7 @@ export default function QuestionBox({
                         {/* Previous Button Col Container */}
                         <Col className={`${styles.questionNavBtnColContainer}`}>
                             {renderPreviousButton({
-                                disabled: isDisabledPreviousQuestionBtn,
+                                disabled: disablePrevQuestionBtn,
                                 onClick: onClickOnPreviousQuestion,
                             })}
                         </Col>
@@ -164,12 +251,15 @@ export default function QuestionBox({
                             {renderNextButton({
                                 onClick: onClickOnNextQuestion,
                                 showButton: displaySubmitQuizBtn,
-                                disabled: !withSelectedAnswer,
+                                disabled: !hasSelectedAnswer,
                             })}
                             {renderSubmitButton({
-                                onClick: onClickOnSubmitBtn,
+                                onClick: () =>
+                                    onClickOnSubmitQuizBtn(
+                                        onGoingQuestionLists
+                                    ),
                                 showButton: !displaySubmitQuizBtn,
-                                disabled: !withSelectedAnswer,
+                                disabled: !hasSelectedAnswer,
                             })}
                         </Col>
                     </Row>

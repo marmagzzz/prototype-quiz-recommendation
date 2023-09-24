@@ -1,7 +1,7 @@
 @use '@/styles/variables' as variables;
 @import '@/styles/breakpoints.scss';
 
-.questionBoxMainContainer {
+.quizBoxMainContainer {
     padding: 48px 64px;
 
     @include media('<=Lphone') {

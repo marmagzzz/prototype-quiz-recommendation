@@ -1,21 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Container, Spinner } from 'react-bootstrap';
 
-import QuestionBox from '@/components/QuestionBox/QuestionBox.component';
+import QuizBox from '@/components/QuizBox/QuizBox.component';
 import { useGetQuestionLists } from '@/http';
-import { TAnswer, TQuestion } from '@/types';
-import { QUIZ_PAGE_DATA } from '@/constants';
+import { TQuestion } from '@/types';
 import CustomSpinner from '@/components/CustomSpinner/CustomSpinner.component';
 import { QUIZ_APP_CONFIG } from '@/config';
 import ResultBox from '@/components/ResultBox/ResultBox.component';
 import ErrorView from '@/components/ErrorView/ErrorView.component';
 
 export default function QuizPage() {
-    const { MSG_EMPTY_QUESTION_LIST } = QUIZ_PAGE_DATA;
-    const [currentQuestion, setCurrentQuestion] = useState<TQuestion>();
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>();
     const [questionLists, setQuestionLists] = useState<TQuestion[]>([]);
     const [isFetchingQuestions, setIsFetchingQuestions] = useState(true);
     const [errorFetchQuestions, setErrorFetchQuestions] = useState<
@@ -43,14 +38,6 @@ export default function QuizPage() {
         setQuestionLists(responseQuestionLists);
         setErrorFetchQuestions(error);
 
-        /**
-         * Set the initial selected question, if question lists is not empty
-         */
-        if (responseQuestionLists.length > 0) {
-            setCurrentQuestion(responseQuestionLists[0]);
-            setCurrentQuestionIndex(0);
-        }
-
         return () => {
             /**
              * Insert unmounting calls
@@ -64,65 +51,12 @@ export default function QuizPage() {
      * HANDLER FUNCTIONS
      *
      * */
-    function onClickOnAnswer(answerObj: TAnswer, indexOfAnswer: number) {
-        const updatedQuestionList = questionLists.map<TQuestion>(
-            (questionObj, index) => {
-                if (index == currentQuestionIndex) {
-                    // Handle setting the selected answer
-                    const updatedChoices = questionObj.choices.map<TAnswer>(
-                        (answerObj, index) => {
-                            return {
-                                ...answerObj,
-                                isSelected: indexOfAnswer == index,
-                            };
-                        }
-                    );
 
-                    const updatedCurrentQuestion = {
-                        ...questionObj,
-                        choices: updatedChoices,
-                    };
-
-                    // Update state of current question
-                    setCurrentQuestion(updatedCurrentQuestion);
-
-                    return updatedCurrentQuestion;
-                }
-                return questionObj;
-            }
-        );
-
-        setQuestionLists(updatedQuestionList);
-    }
-    function onClickOnPreviousQuestion() {
-        const previousPage =
-            currentQuestionIndex != undefined && currentQuestionIndex > 0
-                ? currentQuestionIndex - 1
-                : 0;
-
-        if (previousPage >= 0) {
-            setCurrentQuestionIndex(previousPage);
-            setCurrentQuestion(questionLists[previousPage]);
-        }
-    }
-    function onClickOnNextQuestion() {
-        const nextPage =
-            currentQuestionIndex != undefined &&
-            currentQuestionIndex < questionLists.length
-                ? currentQuestionIndex + 1
-                : 1;
-
-        if (nextPage < questionLists.length) {
-            setCurrentQuestionIndex(nextPage);
-            setCurrentQuestion(questionLists[nextPage]);
-        }
-    }
-
-    function onClickOnSubmitBtn() {
+    function onClickOnSubmitQuizBtn(answeredQuestionLists: TQuestion[]) {
         // TODO: Start computing of score and display the course recommendation
 
         // Filter all the correct answers
-        const correctAnswers = questionLists.filter(
+        const correctAnswers = answeredQuestionLists.filter(
             (questionObj) =>
                 questionObj.choices.find(
                     (answerObj) => answerObj.isCorrect && answerObj.isSelected
@@ -151,15 +85,7 @@ export default function QuizPage() {
 
     /** Handler when failed to retrieve questions list*/
     if (errorFetchQuestions) {
-        /**
-         * TODO: Possible improvement - either display specific or generic error
-         */
         return <ErrorView error={errorFetchQuestions} />;
-    }
-
-    /** Handler when questions list is empty or no selected questionObj*/
-    if (questionLists.length <= 0 || !currentQuestion) {
-        return <ErrorView error={MSG_EMPTY_QUESTION_LIST} />;
     }
 
     return (
@@ -167,14 +93,9 @@ export default function QuizPage() {
             {resultScore != undefined ? (
                 <ResultBox resultScore={resultScore} />
             ) : (
-                <QuestionBox
-                    currentQuestion={currentQuestion}
-                    currentQuestionIndex={currentQuestionIndex}
-                    totalLengthQuestions={questionLists.length}
-                    onClickOnAnswer={onClickOnAnswer}
-                    onClickOnNextQuestion={onClickOnNextQuestion}
-                    onClickOnPreviousQuestion={onClickOnPreviousQuestion}
-                    onClickOnSubmitBtn={onClickOnSubmitBtn}
+                <QuizBox
+                    questionLists={questionLists}
+                    onClickOnSubmitQuizBtn={onClickOnSubmitQuizBtn}
                 />
             )}
         </main>
