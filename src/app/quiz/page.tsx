@@ -130,10 +130,9 @@ export default function QuizPage() {
 
         let totalScorePercentage =
             (correctAnswers.length / QUIZ_APP_CONFIG.questionLimit) * 100;
+
         // Round the number base by 100
         totalScorePercentage = Math.round((totalScorePercentage * 100) / 100);
-
-        alert(`Overall score: ${totalScorePercentage}/100`);
 
         setResultScore(totalScorePercentage);
     }

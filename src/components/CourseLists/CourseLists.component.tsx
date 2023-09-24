@@ -29,9 +29,16 @@ export default function CourseLists({
                     <h1 data-testid='course-lists-header'>Available Courses</h1>
                 )}
 
-                <Row xs={1} md={3} className={`${styles.rowContainer} g-4`}>
+                <Row
+                    xs={1}
+                    md={3}
+                    className={`${styles.rowCoursesContainer} g-4`}
+                >
                     {courseLists.map((courseObj, index) => (
-                        <Col key={`${index}-${uuidv4()}`}>
+                        <Col
+                            key={`${index}-${uuidv4()}`}
+                            className={`${styles.cardColContainer}`}
+                        >
                             <Card>
                                 <Card.Img variant='top' src={courseObj.image} />
                                 <Card.Body>
