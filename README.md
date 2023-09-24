@@ -29,15 +29,15 @@ The generation of questions and answer choices can be configured in exported obj
 
 #### Toggle shuffled answer-choices
 
-| Parameter        | Type      | Description                                              |
-| :--------------- | :-------- | :------------------------------------------------------- |
-| `shuffleChoices` | `boolean` | Shuffles the generated question for every start of quiz. |
+| Parameter        | Type      | Description                                                    |
+| :--------------- | :-------- | :------------------------------------------------------------- |
+| `shuffleChoices` | `boolean` | Shuffles the generated answer-choices for every start of quiz. |
 
 #### Setting how many questions should be generated per quiz
 
-| Parameter       | Type     | Description                                                                       |
-| :-------------- | :------- | :-------------------------------------------------------------------------------- |
-| `questionLimit` | `number` | Minimum value is 3 and also should not be more than the items from `questions.ts` |
+| Parameter       | Type     | Description                                                                                                 |
+| :-------------- | :------- | :---------------------------------------------------------------------------------------------------------- |
+| `questionLimit` | `number` | Minimum value is 3 and should not be more than the length of items `QUESTIONS` constant from `questions.ts` |
 
 ## Running Tests
 
