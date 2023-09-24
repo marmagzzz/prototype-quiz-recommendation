@@ -1,0 +1,21 @@
+@use '@/styles/variables' as variables;
+
+.resultDisplayContainer {
+    padding: 12px 0;
+}
+
+.resultNavBtnContainer {
+    text-align: center;
+}
+
+.goHomeLink,
+.retakeQuizLink {
+    // text-decoration: none;
+    color: white;
+    margin: 0 24px;
+    text-align: center;
+
+    &:hover {
+        color: variables.$foreGroundColor;
+    }
+}

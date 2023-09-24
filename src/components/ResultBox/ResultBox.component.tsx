@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
+import Link from 'next/link';
 
 import { COURSES } from '@/constants';
 import { EQualifications } from '@/enums';
 import { TCourse } from '@/types';
 import CourseLists from '../CourseLists/CourseLists.component';
+import styles from './ResultBox.module.scss';
 
 type TResultBoxProps = {
     resultScore: number;
@@ -40,8 +42,19 @@ export default function ResultBox({ resultScore }: TResultBoxProps) {
     }, []);
     return (
         <section data-testid='result-box'>
-            <Container>
-                <h1>Your total score is {resultScore}/100.</h1>
+            <Container className={`${styles.resultDisplayContainer}`}>
+                <h1 data-testid='result-score-txt'>
+                    Your total score is {resultScore}/100.
+                </h1>
+
+                <div className={`${styles.resultNavBtnContainer}`}>
+                    <Link href='/' className={`${styles.goHomeLink}`}>
+                        Home
+                    </Link>
+                    <a href='/quiz' className={`${styles.retakeQuizLink}`}>
+                        Retake
+                    </a>
+                </div>
             </Container>
             <CourseLists courseLists={recommendedCourses} recommendation />
         </section>
