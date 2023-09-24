@@ -94,7 +94,7 @@ describe('Rendering ...', () => {
     -   To retain session of exam
     -   To store the results of exam per user
     -   Store questions, results, users in database.
-    -   Generate analytics based on user data and activity.
+    -   Generate analytics report based on user data and activity.
 -   Containerization
 -   Add eCommerce feature for purchasing recommended courses
 
