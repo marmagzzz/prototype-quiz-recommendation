@@ -15,10 +15,6 @@ describe('Constant QUESTION data', () => {
         expect(QUESTIONS.length).toBeGreaterThanOrEqual(3);
     });
 
-    it('QUESTION should not be an empty array and minimum 3 elements', () => {
-        expect(QUESTIONS.length).toBeGreaterThanOrEqual(3);
-    });
-
     it('All QUESTIONS should have a correct answer', () => {
         let noAnswers = QUESTIONS.filter(
             (questionObj) =>
