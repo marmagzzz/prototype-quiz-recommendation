@@ -1,28 +1,117 @@
-<!--
-TODO:
+# Prototype: Quiz app with product (course) recommendation.
 
-Add app/project overview
-    * eg. the purpose of this initial repo
-    * what tools/frameworks used
+A prototype web application built using Next.js (Typescript) that allows users to test their knowledge of the English language through a series of multiple-choice questions. Each question is associated with a set of answer choices, with one correct answer.
 
-Add basic requirements to run the app
+The purpose of this app is to provide an instant recommendation of different courses based on the result score of the user from the quiz.
 
-Add the purpose of app.config.ts
+## Features
 
-Add instruction on
-    * standard structure importing of external files
-    * standard component testing
-        1. Render the component
-        2. Get an element from the component and simulate any user interactions
-        3. Write an assertion.
+-   Toggle shuffle questions
+-   Toggle shuffle answer choices
+-   Scoring and recommendation logic
+-   Instant result and recommendation of courses
+-   Lightweight & mobile responsive
+-   Scalable/Expandable
 
-Add recommendation for possible improvement of app
-    * Development of Backend API
-        * To retain session of exam
-        * To store the results of exam per user
-    * Containerization
-    * Add eCommerce module for purchasing recommended courses
--->
+## Tech Stack
+
+**Client:** Next.js (Typescript), React Bootstrap, Sass, Lodash
+
+## In-app configuration (app.config.ts)
+
+The generation of questions and answer choices can be configured in exported object `QUIZ_APP_CONFIG` of `app.config.ts`
+
+#### Toggle shuffled questions
+
+| Parameter          | Type      | Description                                              |
+| :----------------- | :-------- | :------------------------------------------------------- |
+| `shuffleQuestions` | `boolean` | Shuffles the generated question for every start of quiz. |
+
+#### Toggle shuffled answer-choices
+
+| Parameter        | Type      | Description                                              |
+| :--------------- | :-------- | :------------------------------------------------------- |
+| `shuffleChoices` | `boolean` | Shuffles the generated question for every start of quiz. |
+
+#### Setting how many questions should be generated per quiz
+
+| Parameter       | Type     | Description                                                                       |
+| :-------------- | :------- | :-------------------------------------------------------------------------------- |
+| `questionLimit` | `number` | Minimum value is 3 and also should not be more than the items from `questions.ts` |
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
+
+## Deployment
+
+This project is deployed in Vercel. It automatically handles deployment everytime there is an update to pointed repository branch on Vercel.
+
+## Contributing
+
+#### Importing of 3rd party libraries and self-declared files
+
+```javascript
+// 3rd party libraries first
+import { Card, Col, Container, Row } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
+
+// Self-declared files
+import { TCourse } from '@/types';
+import styles from './CourseLists.module.scss';
+```
+
+#### Component-testing
+
+```javascript
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+
+import SamplePage from '@/app/page';
+
+describe('Rendering ...', () => {
+    it('Should ... ', () => {
+        // Standard flow for component testing
+        // 1. Render the component
+        render(<SamplePage />);
+
+        // 2. Get an element from the component and simulate any user interactions
+        const samplePage = screen.getByTestId('sample-page');
+
+        // 3. Write an assertion.
+        expect(samplePage).toBeInTheDocument();
+    });
+});
+```
+
+## FAQ
+
+#### What happens if I refreshed the browser during the quiz?
+
+The quiz is only handled on client side, so your current progress will disappear after the refresh. The quiz will restart and a new set of questions will be generated.
+
+#### Is my quiz result saved?
+
+No, the app has client-side-only capability as of now. But it can be improved in the future and integrate a backend for saving the progress and activities.
+
+## Acknowledgements
+
+-   [NextJs](https://nextjs.org/)
+-   [React Bootstrap](https://react-bootstrap.github.io/docs/getting-started/introduction)
+-   [Lodash](https://lodash.com/docs/4.17.15/)
+-   [Vercel](https://vercel.com/)
+
+## Authors
+
+-   [@marmagzzz](https://github.com/marmagzzz/)
+
+## Support
+
+For support, email mmagnaye@yopmail.com.
 
 ## Generated README from Next
 
