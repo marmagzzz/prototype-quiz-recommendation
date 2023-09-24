@@ -4,5 +4,5 @@
 export const QUIZ_APP_CONFIG = {
     shuffleQuestions: true,
     shuffleChoices: true,
-    questionLimit: 6, // Note: This affects the computation of score, the value should not be greater than the length of the QUESTIONS[] in `questions.ts` file
+    questionLimit: 5, // Note: This affects the computation of score, the value should not be greater than the length of the QUESTIONS[] in `questions.ts` file
 };
