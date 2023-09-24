@@ -1,0 +1,10 @@
+.errorPageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .errorMessage {
+        color: white;
+        font-size: 2rem;
+    }
+}

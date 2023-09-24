@@ -10,6 +10,7 @@ import { QUIZ_PAGE_DATA } from '@/constants';
 import CustomSpinner from '@/components/CustomSpinner/CustomSpinner.component';
 import { QUIZ_APP_CONFIG } from '@/config';
 import ResultBox from '@/components/ResultBox/ResultBox.component';
+import ErrorView from '@/components/ErrorView/ErrorView.component';
 
 export default function QuizPage() {
     const { MSG_EMPTY_QUESTION_LIST } = QUIZ_PAGE_DATA;
@@ -153,24 +154,12 @@ export default function QuizPage() {
         /**
          * TODO: Possible improvement - either display specific or generic error
          */
-        return (
-            <Container>
-                <p>
-                    {typeof errorFetchQuestions == 'string'
-                        ? errorFetchQuestions
-                        : errorFetchQuestions.message}
-                </p>
-            </Container>
-        );
+        return <ErrorView error={errorFetchQuestions} />;
     }
 
     /** Handler when questions list is empty or no selected questionObj*/
     if (questionLists.length <= 0 || !currentQuestion) {
-        return (
-            <Container>
-                <p>{MSG_EMPTY_QUESTION_LIST}</p>
-            </Container>
-        );
+        return <ErrorView error={MSG_EMPTY_QUESTION_LIST} />;
     }
 
     return (
