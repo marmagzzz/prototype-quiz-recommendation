@@ -76,3 +76,11 @@
         width: 100%;
     }
 }
+
+.progressLabelContainer {
+    display: flex;
+    justify-content: center;
+    .progressLabel {
+        color: white;
+    }
+}

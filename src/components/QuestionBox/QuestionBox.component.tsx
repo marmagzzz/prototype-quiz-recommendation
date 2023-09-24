@@ -45,31 +45,52 @@ export default function QuestionBox({
         currentQuestionIndex != undefined &&
         totalLengthQuestions == currentQuestionIndex + 1;
 
-    const renderNextButton = (
-        showSubmitButton: boolean,
-        canProceedToNextQuestion: boolean
-    ) => {
-        if (showSubmitButton == false) {
+    const renderPreviousButton = ({
+        disabled,
+        onClick,
+    }: {
+        disabled: boolean;
+        onClick: () => void;
+    }) => {
+        return (
+            <QuestionNavBtn onClick={onClick} disabled={disabled}>
+                <IoIosArrowBack />
+            </QuestionNavBtn>
+        );
+    };
+
+    const renderNextButton = ({
+        showButton,
+        disabled,
+        onClick,
+    }: {
+        showButton: boolean;
+        disabled: boolean;
+        onClick: () => void;
+    }) => {
+        if (showButton == false) {
             return (
-                <QuestionNavBtn
-                    onClick={onClickOnNextQuestion}
-                    disabled={!canProceedToNextQuestion}
-                >
+                <QuestionNavBtn onClick={onClick} disabled={disabled}>
                     <IoIosArrowForward />
                 </QuestionNavBtn>
             );
         }
     };
 
-    const renderSubmitButton = (
-        displaySubmitQuizBtn: boolean,
-        withSelectedAnswer: boolean
-    ) => {
+    const renderSubmitButton = ({
+        showButton,
+        disabled,
+        onClick,
+    }: {
+        showButton: boolean;
+        disabled: boolean;
+        onClick: () => void;
+    }) => {
         if (displaySubmitQuizBtn) {
             return (
                 <QuestionNavBtn
-                    onClick={onClickOnSubmitBtn}
-                    disabled={!withSelectedAnswer && !displaySubmitQuizBtn}
+                    onClick={onClick}
+                    disabled={disabled && showButton}
                 >
                     <AiOutlineFileDone />
                 </QuestionNavBtn>
@@ -132,33 +153,33 @@ export default function QuestionBox({
                     <Row xs={2}>
                         {/* Previous Button Col Container */}
                         <Col className={`${styles.questionNavBtnColContainer}`}>
-                            <QuestionNavBtn
-                                onClick={onClickOnPreviousQuestion}
-                                disabled={isDisabledPreviousQuestionBtn}
-                            >
-                                <IoIosArrowBack />
-                            </QuestionNavBtn>
+                            {renderPreviousButton({
+                                disabled: isDisabledPreviousQuestionBtn,
+                                onClick: onClickOnPreviousQuestion,
+                            })}
                         </Col>
 
                         {/* Next and Submit Button Col Container */}
                         <Col className={`${styles.questionNavBtnColContainer}`}>
-                            {renderNextButton(
-                                displaySubmitQuizBtn,
-                                withSelectedAnswer
-                            )}
-                            {renderSubmitButton(
-                                displaySubmitQuizBtn,
-                                withSelectedAnswer
-                            )}
+                            {renderNextButton({
+                                onClick: onClickOnNextQuestion,
+                                showButton: displaySubmitQuizBtn,
+                                disabled: !withSelectedAnswer,
+                            })}
+                            {renderSubmitButton({
+                                onClick: onClickOnSubmitBtn,
+                                showButton: !displaySubmitQuizBtn,
+                                disabled: !withSelectedAnswer,
+                            })}
                         </Col>
                     </Row>
                 </Container>
 
-                <div>
+                <div className={`${styles.progressLabelContainer}`}>
                     {/* Display page and count of questions when position is NOT undefined */}
                     {currentQuestionIndex != undefined && (
-                        <span>
-                            Question: {currentQuestionIndex + 1} of{' '}
+                        <span className={`${styles.progressLabel}`}>
+                            Question {currentQuestionIndex + 1} of{' '}
                             {totalLengthQuestions}
                         </span>
                     )}
