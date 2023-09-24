@@ -6,7 +6,7 @@ import { FiInfo } from 'react-icons/fi';
 import { AiOutlineFileDone } from 'react-icons/ai';
 import { IoIosArrowBack, IoIosArrowForward, IoIosSend } from 'react-icons/io';
 
-import styles from './QuestionBox.module.scss';
+import styles from './QuizBox.module.scss';
 import { TAnswer, TQuestion } from '@/types';
 import QuestionNavBtn from '../QuestionNavBtn/QuestionNavBtn.component';
 
@@ -21,7 +21,7 @@ type QuestionBoxProps = {
     onClickOnSubmitBtn: () => void;
 };
 
-export default function QuestionBox({
+export default function QuizBox({
     currentQuestion,
     currentQuestionIndex,
     totalLengthQuestions,
@@ -100,7 +100,7 @@ export default function QuestionBox({
 
     return (
         <section data-testid='question-box'>
-            <Container className={`${styles.questionBoxMainContainer}`}>
+            <Container className={`${styles.quizBoxMainContainer}`}>
                 {/* Instruction Container */}
                 <div className={`${styles.instructionContainer}`}>
                     <FiInfo className={`${styles.iconInfo}`} />{' '}

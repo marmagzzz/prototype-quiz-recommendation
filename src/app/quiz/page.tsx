@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Container, Spinner } from 'react-bootstrap';
 
-import QuestionBox from '@/components/QuestionBox/QuestionBox.component';
+import QuizBox from '@/components/QuizBox/QuizBox.component';
 import { useGetQuestionLists } from '@/http';
 import { TAnswer, TQuestion } from '@/types';
 import { QUIZ_PAGE_DATA } from '@/constants';
@@ -167,7 +167,7 @@ export default function QuizPage() {
             {resultScore != undefined ? (
                 <ResultBox resultScore={resultScore} />
             ) : (
-                <QuestionBox
+                <QuizBox
                     currentQuestion={currentQuestion}
                     currentQuestionIndex={currentQuestionIndex}
                     totalLengthQuestions={questionLists.length}
