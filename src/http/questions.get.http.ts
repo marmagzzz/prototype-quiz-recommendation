@@ -20,12 +20,6 @@ export function useGetQuestionLists(
     // const { data, isLoading, error } = useSWR<TQuestion[]>(`${API_URL}/${ENDPOINT}${PARAMS}`, genericFetcher)
     // return { data, isLoading, error }
 
-    // useEffect(() => {
-    //     (async () => {
-    //         await sleep(1_000);
-    //     })();
-    // }, []);
-
     // Check if questions are needed to be shuffled
     let resultQuestionList = QUIZ_APP_CONFIG.shuffleQuestions
         ? _.sampleSize(QUESTIONS, questionLimit)
