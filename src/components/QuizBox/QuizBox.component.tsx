@@ -48,18 +48,61 @@ export default function QuizBox({
      *
      * */
 
-    const disablePrevQuestionBtn =
-        currentQuestionIndex == undefined || currentQuestionIndex <= 0;
+    /** sideEffect-based implementation
+     * Pros:
+     * * Better readability
+     * * Monitors component re-render / State reactive
+     * Cons:
+     * * A bit longer (boilerplates)
+     */
+    const [disablePrevQuestionBtn, setDisablePrevQuestionBtn] = useState(false);
+    const [hasSelectedAnswer, setHasSelectedAnswer] = useState(false);
+    const [displaySubmitQuizBtn, setDisplaySubmitQuizBtn] = useState(false);
+    useEffect(() => {
+        if (onGoingQuestionLists.length > 0) {
+            const hasSelectedAnswer =
+                currentQuestion.choices.find(
+                    (answerObj) => answerObj.isSelected == true
+                ) != undefined;
 
-    const hasSelectedAnswer =
-        currentQuestion.choices.find(
-            (answerObj) => answerObj.isSelected == true
-        ) != undefined;
+            setDisablePrevQuestionBtn(
+                currentQuestionIndex == undefined || currentQuestionIndex <= 0
+            );
 
-    const displaySubmitQuizBtn =
-        hasSelectedAnswer &&
-        currentQuestionIndex != undefined &&
-        totalLengthQuestions == currentQuestionIndex + 1;
+            setHasSelectedAnswer(
+                hasSelectedAnswer && // With selected answer
+                    currentQuestionIndex != undefined &&
+                    totalLengthQuestions != currentQuestionIndex + 1 // But not on last question yet
+            );
+
+            setDisplaySubmitQuizBtn(
+                hasSelectedAnswer && // With selected answer
+                    currentQuestionIndex != undefined &&
+                    totalLengthQuestions == currentQuestionIndex + 1 // and on last question
+            );
+        }
+    }, [currentQuestion]);
+
+    /** None sideEffect-based implementation
+     * Pros:
+     * * Straight forward
+     * * Short code-block implementation
+     * * Monitors component re-render / State reactive
+     * Cons:
+     * * Readability isn't good enough
+     */
+    // const disablePrevQuestionBtn =
+    //     currentQuestionIndex == undefined || currentQuestionIndex <= 0;
+
+    // const hasSelectedAnswer =
+    //     currentQuestion.choices.find(
+    //         (answerObj) => answerObj.isSelected == true
+    //     ) != undefined;
+
+    // const displaySubmitQuizBtn =
+    //     hasSelectedAnswer &&
+    //     currentQuestionIndex != undefined &&
+    //     totalLengthQuestions == currentQuestionIndex + 1;
 
     /**
      *
@@ -302,6 +345,12 @@ export default function QuizBox({
                                         answeredQuestionLists:
                                             onGoingQuestionLists,
                                     }),
+
+                                /** sideEffect-based implementation */
+                                // showButton: displaySubmitQuizBtn,
+                                // disabled: hasSelectedAnswer,
+
+                                /** None sideEffect-based implementation */
                                 showButton: !displaySubmitQuizBtn,
                                 disabled: !hasSelectedAnswer,
                             })}
