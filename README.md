@@ -17,9 +17,11 @@ The purpose of this app is to provide an instant recommendation of different cou
 
 **Client:** Next.js (Typescript), React Bootstrap, Sass, Lodash
 
-## In-app configuration ([app.config.ts]('https://github.com/marmagzzz/prototype-quiz-recommendation/blob/main/src/config/app.config.ts'))
+## In-app configuration (app.config.ts)
 
 The generation of questions and answer choices can be configured in exported object `QUIZ_APP_CONFIG` of `app.config.ts`
+
+Edit `[app.config.ts]('https://github.com/marmagzzz/prototype-quiz-recommendation/blob/main/src/config/app.config.ts')` here
 
 #### Toggle shuffled questions
 
