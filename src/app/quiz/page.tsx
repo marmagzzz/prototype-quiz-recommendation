@@ -52,24 +52,11 @@ export default function QuizPage() {
      *
      * */
 
-    function onClickOnSubmitQuizBtn(answeredQuestionLists: TQuestion[]) {
-        // TODO: Start computing of score and display the course recommendation
-
-        // Filter all the correct answers
-        const correctAnswers = answeredQuestionLists.filter(
-            (questionObj) =>
-                questionObj.choices.find(
-                    (answerObj) => answerObj.isCorrect && answerObj.isSelected
-                ) != undefined
-        );
-
-        let totalScorePercentage =
-            (correctAnswers.length / QUIZ_APP_CONFIG.questionLimit) * 100;
-
-        // Round the number base by 100
-        totalScorePercentage = Math.round((totalScorePercentage * 100) / 100);
-
-        setResultScore(totalScorePercentage);
+    function onClickOnSubmitQuizBtnCallback(
+        quizResultScore: number,
+        answeredQuestionLists: TQuestion[]
+    ) {
+        setResultScore(quizResultScore);
     }
 
     /**
@@ -95,7 +82,9 @@ export default function QuizPage() {
             ) : (
                 <QuizBox
                     questionLists={questionLists}
-                    onClickOnSubmitQuizBtn={onClickOnSubmitQuizBtn}
+                    onClickOnSubmitQuizBtnCallback={
+                        onClickOnSubmitQuizBtnCallback
+                    }
                 />
             )}
         </main>

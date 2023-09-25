@@ -49,7 +49,7 @@ export default function ResultBox({ resultScore }: TResultBoxProps) {
 
                 <div className={`${styles.resultNavBtnContainer}`}>
                     <Link href='/' className={`${styles.goHomeLink}`}>
-                        Home
+                        Home Page
                     </Link>
                     <a href='/quiz' className={`${styles.retakeQuizLink}`}>
                         Retake

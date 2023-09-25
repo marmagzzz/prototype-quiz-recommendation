@@ -16,13 +16,16 @@ import { QUIZ_PAGE_DATA } from '@/constants';
 type QuestionBoxProps = {
     questionLists: TQuestion[];
     /** Function Handlers */
-    onClickOnSubmitQuizBtn: (answeredQuestionLists: TQuestion[]) => void;
+    onClickOnSubmitQuizBtnCallback: (
+        quizResultScore: number,
+        answeredQuestionLists: TQuestion[]
+    ) => void;
 };
 
 export default function QuizBox({
     questionLists,
     /** Function Handlers */
-    onClickOnSubmitQuizBtn,
+    onClickOnSubmitQuizBtnCallback,
 }: QuestionBoxProps) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0); // Default, first question of questionLists
 
@@ -115,6 +118,31 @@ export default function QuizBox({
         }
     }
 
+    function onClickOnSubmitQuiz({
+        answeredQuestionLists,
+    }: {
+        answeredQuestionLists: TQuestion[];
+    }) {
+        // Filter all the correct answers
+        const correctAnswers = answeredQuestionLists.filter(
+            (questionObj) =>
+                questionObj.choices.find(
+                    (answerObj) => answerObj.isCorrect && answerObj.isSelected
+                ) != undefined
+        );
+
+        let totalScorePercentage =
+            (correctAnswers.length / onGoingQuestionLists.length) * 100;
+
+        // Round the number base by 100
+        totalScorePercentage = Math.round((totalScorePercentage * 100) / 100);
+
+        onClickOnSubmitQuizBtnCallback(
+            totalScorePercentage,
+            answeredQuestionLists
+        );
+    }
+
     /**
      *
      * Renderer functions
@@ -129,7 +157,11 @@ export default function QuizBox({
         onClick: () => void;
     }) => {
         return (
-            <QuestionNavBtn onClick={onClick} disabled={disabled}>
+            <QuestionNavBtn
+                data-testid='prev-question-btn'
+                onClick={onClick}
+                disabled={disabled}
+            >
                 <IoIosArrowBack />
             </QuestionNavBtn>
         );
@@ -146,7 +178,11 @@ export default function QuizBox({
     }) => {
         if (showButton == false) {
             return (
-                <QuestionNavBtn onClick={onClick} disabled={disabled}>
+                <QuestionNavBtn
+                    data-testid='next-question-btn'
+                    onClick={onClick}
+                    disabled={disabled}
+                >
                     <IoIosArrowForward />
                 </QuestionNavBtn>
             );
@@ -165,6 +201,7 @@ export default function QuizBox({
         if (displaySubmitQuizBtn) {
             return (
                 <QuestionNavBtn
+                    data-testid='submit-quiz-btn'
                     onClick={onClick}
                     disabled={disabled && showButton}
                 >
@@ -191,13 +228,17 @@ export default function QuizBox({
                 {/* Instruction Container */}
                 <div className={`${styles.instructionContainer}`}>
                     <FiInfo className={`${styles.iconInfo}`} />{' '}
-                    <h3>{currentQuestion.instruction}</h3>
+                    <h3 data-testid='quiz-instruction-txt'>
+                        {currentQuestion.instruction}
+                    </h3>
                 </div>
 
                 {/* Question Container */}
                 <div className={`${styles.questionContainer}`}>
                     <em>
-                        <h5>{currentQuestion.question}</h5>
+                        <h5 data-testid='quiz-question-txt'>
+                            {currentQuestion.question}
+                        </h5>
                     </em>
                 </div>
 
@@ -255,9 +296,10 @@ export default function QuizBox({
                             })}
                             {renderSubmitButton({
                                 onClick: () =>
-                                    onClickOnSubmitQuizBtn(
-                                        onGoingQuestionLists
-                                    ),
+                                    onClickOnSubmitQuiz({
+                                        answeredQuestionLists:
+                                            onGoingQuestionLists,
+                                    }),
                                 showButton: !displaySubmitQuizBtn,
                                 disabled: !hasSelectedAnswer,
                             })}
