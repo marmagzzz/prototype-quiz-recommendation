@@ -21,7 +21,7 @@ The purpose of this app is to provide an instant recommendation of different cou
 
 The generation of questions and answer choices can be configured in exported object `QUIZ_APP_CONFIG` of `app.config.ts`
 
-Edit `[app.config.ts]('https://github.com/marmagzzz/prototype-quiz-recommendation/blob/main/src/config/app.config.ts')` here
+Access the [app.config.ts here]('https://github.com/marmagzzz/prototype-quiz-recommendation/blob/main/src/config/app.config.ts')
 
 #### Toggle shuffled questions
 
