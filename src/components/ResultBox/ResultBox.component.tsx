@@ -39,7 +39,8 @@ export default function ResultBox({ resultScore }: TResultBoxProps) {
         return () => {
             // Component unmount callback
         };
-    }, []);
+    }, [resultScore]);
+
     return (
         <section data-testid='result-box'>
             <Container className={`${styles.resultDisplayContainer}`}>

@@ -44,7 +44,7 @@ export default function QuizPage() {
              * eg: detaching listeners, disconnecting sockets, etc.
              */
         };
-    }, []);
+    }, [isLoading, responseQuestionLists, error]);
 
     /**
      *
