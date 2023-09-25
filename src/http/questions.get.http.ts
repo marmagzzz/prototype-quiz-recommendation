@@ -20,6 +20,26 @@ export function useGetQuestionLists(
     // const { data, isLoading, error } = useSWR<TQuestion[]>(`${API_URL}/${ENDPOINT}${PARAMS}`, genericFetcher)
     // return { data, isLoading, error }
 
+    // Check if question limit is valid
+    if (questionLimit <= 0) {
+        return {
+            error: 'Invalid question limit value.',
+            isLoading: false,
+            data: {
+                questionLists: [],
+            },
+        };
+    }
+    if (questionLimit > QUESTIONS.length) {
+        return {
+            error: 'Question limit is greater than the available number of questions.',
+            isLoading: false,
+            data: {
+                questionLists: [],
+            },
+        };
+    }
+
     // Check if questions are needed to be shuffled
     let resultQuestionList = QUIZ_APP_CONFIG.shuffleQuestions
         ? _.sampleSize(QUESTIONS, questionLimit)

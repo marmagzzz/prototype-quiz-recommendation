@@ -6,12 +6,10 @@ import QuizBox from '@/components/QuizBox/QuizBox.component';
 import { useGetQuestionLists } from '@/http';
 import { TQuestion } from '@/types';
 import CustomSpinner from '@/components/CustomSpinner/CustomSpinner.component';
-import { QUIZ_APP_CONFIG } from '@/config';
 import ResultBox from '@/components/ResultBox/ResultBox.component';
 import ErrorView from '@/components/ErrorView/ErrorView.component';
 
 export default function QuizPage() {
-    const [questionLists, setQuestionLists] = useState<TQuestion[]>([]);
     const [isFetchingQuestions, setIsFetchingQuestions] = useState(true);
     const [errorFetchQuestions, setErrorFetchQuestions] = useState<
         Error | string | null
@@ -25,7 +23,8 @@ export default function QuizPage() {
         isLoading,
         error,
     } = useGetQuestionLists();
-    const { questionLists: responseQuestionLists } = questionListsResponse;
+
+    const { questionLists } = questionListsResponse;
 
     /**
      *
@@ -33,9 +32,7 @@ export default function QuizPage() {
      *
      * */
     useEffect(() => {
-        /** Update state */
         setIsFetchingQuestions(isLoading);
-        setQuestionLists(responseQuestionLists);
         setErrorFetchQuestions(error);
 
         return () => {
@@ -44,7 +41,7 @@ export default function QuizPage() {
              * eg: detaching listeners, disconnecting sockets, etc.
              */
         };
-    }, [isLoading, responseQuestionLists, error]);
+    }, [isLoading, error]);
 
     /**
      *

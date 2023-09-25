@@ -1,10 +1,26 @@
+@use '@/styles/variables' as variables;
+@import '@/styles/breakpoints.scss';
+
 .errorPageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     .errorMessage {
         color: white;
         font-size: 2rem;
+    }
+
+    .errorCTA {
+        text-decoration: none;
+        cursor: pointer;
+        color: white;
+        margin: 0 24px;
+        text-align: center;
+
+        &:hover {
+            color: variables.$foreGroundColor;
+        }
     }
 }

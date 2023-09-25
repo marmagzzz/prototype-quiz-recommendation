@@ -10,13 +10,12 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import styles from './QuizBox.module.scss';
 import { TAnswer, TQuestion } from '@/types';
 import QuestionNavBtn from '../QuestionNavBtn/QuestionNavBtn.component';
-import ErrorView from '../ErrorView/ErrorView.component';
 import { QUIZ_PAGE_DATA } from '@/constants';
 
 type QuestionBoxProps = {
     questionLists: TQuestion[];
     /** Function Handlers */
-    onClickOnSubmitQuizBtnCallback: (
+    onClickOnSubmitQuizBtnCallback?: (
         quizResultScore: number,
         answeredQuestionLists: TQuestion[]
     ) => void;
@@ -27,6 +26,11 @@ export default function QuizBox({
     /** Function Handlers */
     onClickOnSubmitQuizBtnCallback,
 }: QuestionBoxProps) {
+    /** Handler when questions list is empty or no selected questionObj*/
+    if (questionLists.length <= 0) {
+        throw new Error(QUIZ_PAGE_DATA.MSG_EMPTY_QUESTION_LIST);
+    }
+
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0); // Default, first question of questionLists
 
     const [onGoingQuestionLists, setOnGoingQuestionLists] =
@@ -137,10 +141,12 @@ export default function QuizBox({
         // Round the number base by 100
         totalScorePercentage = Math.round((totalScorePercentage * 100) / 100);
 
-        onClickOnSubmitQuizBtnCallback(
-            totalScorePercentage,
-            answeredQuestionLists
-        );
+        if (onClickOnSubmitQuizBtnCallback != undefined) {
+            onClickOnSubmitQuizBtnCallback(
+                totalScorePercentage,
+                answeredQuestionLists
+            );
+        }
     }
 
     /**
@@ -216,11 +222,6 @@ export default function QuizBox({
      * Actual component renderer
      *
      */
-
-    /** Handler when questions list is empty or no selected questionObj*/
-    if (questionLists.length <= 0) {
-        return <ErrorView error={QUIZ_PAGE_DATA.MSG_EMPTY_QUESTION_LIST} />;
-    }
 
     return (
         <section data-testid='question-box'>
