@@ -26,7 +26,7 @@ export default function QuizBox({
     /** Function Handlers */
     onClickOnSubmitQuizBtnCallback,
 }: QuestionBoxProps) {
-    /** Handler when questions list is empty or no selected questionObj*/
+    /** Guard Clause: Handle when questions list is empty */
     if (questionLists.length <= 0) {
         throw new Error(QUIZ_PAGE_DATA.MSG_EMPTY_QUESTION_LIST);
     }
@@ -47,6 +47,7 @@ export default function QuizBox({
      * Conditional variables
      *
      * */
+
     const disablePrevQuestionBtn =
         currentQuestionIndex == undefined || currentQuestionIndex <= 0;
 
