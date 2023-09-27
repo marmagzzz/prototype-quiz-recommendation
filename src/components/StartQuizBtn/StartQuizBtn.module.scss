@@ -3,6 +3,7 @@
 
 .startQuizBtn {
     text-decoration: none;
+    text-align: center;
     color: variables.$foreGroundColor;
     background: variables.$secondaryBgColor;
     padding: 24px;
@@ -11,6 +12,7 @@
 
     @include media('<=Lphone') {
         padding: 18px;
+        width: 128px;
     }
 
     &:hover {
