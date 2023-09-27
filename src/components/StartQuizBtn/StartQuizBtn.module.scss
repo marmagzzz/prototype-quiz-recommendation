@@ -9,6 +9,10 @@
     border-radius: 50px;
     margin-top: 12px;
 
+    @include media('<=Lphone') {
+        padding: 18px;
+    }
+
     &:hover {
         color: white;
         background: variables.$foreGroundColor;
