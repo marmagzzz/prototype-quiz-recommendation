@@ -4,6 +4,27 @@ A prototype web application built using Next.js (Typescript) that allows users t
 
 The purpose of this app is to provide an instant recommendation of different courses based on the result score of the user from the quiz.
 
+## Table of contents
+
+-   [Features](#features)
+-   [Tech Stack](#tech-stack)
+-   [In-app configuration (app.config.ts)](#in-app-configuration-appconfigts)
+    -   [shuffledQuestion](#toggle-shuffled-questions)
+    -   [shuffledChoices](#toggle-shuffled-answer-choices)
+    -   [questionLimit](#setting-how-many-questions-should-be-generated-per-quiz)
+-   [Running Tests](#running-tests)
+-   [Running Tests](#running-tests)
+-   [Deployment](#deployment)
+-   [Contributing](#contributing)
+    -   [Importing of 3rd party libraries and self-declared files](#importing-of-3rd-party-libraries-and-self-declared-files)
+    -   [Component Testing](#component-testing)
+-   [For future enhancements](#for-future-enhancements)
+-   [FAQ](#faq)
+-   [Acknowledgements](#acknowledgements)
+-   [Authors](#authors)
+-   [Support](#support)
+-   [Next.js README](#generated-readme-from-next)
+
 ## Features
 
 -   Toggle shuffle questions
